@@ -1,0 +1,58 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Vue</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+  </head>
+  <style>
+    .box {
+      width: 400px;
+      height: 100px;
+      margin: 20px;
+      display: inline-block;
+      text-align: center;
+      border: 2px solid blue;
+    }
+  </style>
+  <body>
+    <h1>Hello Vue :)</h1>
+    <div id="app">
+      <div v-if="showBooks">
+        <p>{{ title }} - {{ author }}- {{ age }}</p>
+
+        <button v-on:click="age++">Increase age</button>
+        <button v-on:click="age--">Decrease age</button>
+        <div @click="changeTitle('Oathbringer')">Change book titel</div>
+      </div>
+      <button @click=" toggleShowBooks">
+        <span v-if="showBooks">Hide Books</span>
+        <!--remove dom & re-enter-->
+        <!-- <span v-if="!showBooks">Show Books</span> -->
+        <span v-else>Show Books</span>
+      </button>
+      <div v-show="showBooks">currently showing books</div>
+      <!--display:none & display:block-->
+
+      <!--mouse events-->
+      <div class="box" v-on:mouseover="handleEvent(5)">mouseover (enter)</div>
+      <div class="box" @mouseleave="handleEvent">mouseleave</div>
+      <div class="box" @dblclick="handleEvent">double-click</div>
+      <div class="box" @dblclick="handleMouseMove">double-click</div>
+      <div class="box" @mousemove="handleMouseMove">
+        position - {{ x }} - {{ y }}
+      </div>
+
+      <!---loop -v-for-->
+
+      <ul>
+        <li v-for="book in books">
+          <h3>{{book.title}}</h3>
+          <p>{{ book.author }}</p>
+        </li>
+      </ul>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
